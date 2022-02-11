@@ -39,7 +39,11 @@ expect()->extend('toBeOne', function () {
 function actingAsUser(?Authenticatable $user = null, string $driver = null)
 {
     if (is_null($user)) {
-        $user = User::factory()->create();
+        $user = User::query()->first();
+
+        if (is_null($user)) {
+            $user = User::factory()->create();
+        }
     }
 
     return test()->actingAs($user, $driver);

@@ -13,5 +13,5 @@ test('it lists existing users', function () {
     $response = $this->get('/api/users');
 
     $response->assertStatus(200)
-        ->assertJsonCount(51, 'data'); // 50 + authenticated
+        ->assertJsonCount(50, 'data');
 });

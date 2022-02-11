@@ -19,4 +19,8 @@ test('it deletes an existing user', function () {
         ->assertJsonStructure([
             'message',
         ]);
+
+    $this->assertDatabaseMissing('users', [
+        'id' => $user->id,
+    ]);
 });
