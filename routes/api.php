@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(UserController::class)->prefix('users')->group(function () {
+    // We know we can use Route::resource(), but we're demonstrating Route::controller().
+    // So 😅
+    Route::get('/', 'index');
+    Route::get('/{user}', 'show');
+    Route::post('/', 'store');
+    Route::patch('/{user}', 'update');
+    Route::delete('/{user}', 'destroy');
 });
