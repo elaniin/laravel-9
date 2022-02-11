@@ -11,6 +11,8 @@ test('it shows an existing user', function () {
         'email' => 'john@doe.com',
     ]);
 
+    actingAsUser();
+
     $response = $this->get("/api/users/{$user->id}");
 
     $response->assertStatus(200)

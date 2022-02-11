@@ -5,6 +5,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 
 test('it stores a new user', function () {
+    actingAsUser();
+
     $response = $this->post('/api/users', [
         'name' => 'John Doe',
         'email' => 'john@doe.com',

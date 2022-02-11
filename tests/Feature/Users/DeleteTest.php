@@ -11,6 +11,8 @@ test('it deletes an existing user', function () {
         'email' => 'john@doe.com',
     ]);
 
+    actingAsUser();
+
     $response = $this->delete("/api/users/{$user->id}");
 
     $response->assertStatus(200)

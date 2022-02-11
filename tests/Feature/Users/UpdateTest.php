@@ -11,6 +11,8 @@ test('it updates an existing user', function () {
         'email' => 'john@doe.com',
     ]);
 
+    actingAsUser();
+
     $response = $this->patch("/api/users/{$user->id}", [
         'email' => 'john@doe.dev',
     ], ['Accept' => 'application/json']);

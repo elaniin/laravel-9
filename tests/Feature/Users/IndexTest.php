@@ -8,8 +8,10 @@ uses(RefreshDatabase::class);
 test('it lists existing users', function () {
     User::factory(50)->create();
 
+    actingAsUser();
+
     $response = $this->get('/api/users');
 
     $response->assertStatus(200)
-        ->assertJsonCount(50, 'data');
+        ->assertJsonCount(51, 'data'); // 50 + authenticated
 });
