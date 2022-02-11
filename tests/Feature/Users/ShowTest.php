@@ -22,5 +22,10 @@ test('it shows an existing user', function () {
                 'created_at',
                 'updated_at',
             ],
+        ])
+        ->assertJson([
+            'data' => [
+                'name' => 'JOHN DOE',
+            ],
         ]);
 });
