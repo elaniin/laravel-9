@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PostController extends Controller
@@ -19,6 +20,16 @@ class PostController extends Controller
     public function index(): AnonymousResourceCollection
     {
         return PostResource::collection(Post::all());
+    }
+
+    /**
+     * Display the search results of the resource.
+     *
+     * @return AnonymousResourceCollection
+     */
+    public function search(Request $request): AnonymousResourceCollection
+    {
+        return PostResource::collection(Post::search($request->get('q'))->get());
     }
 
     /**

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Users.
 Route::controller(UserController::class)->prefix('users')->middleware(['api', 'auth'])->group(function () {
     // We know we can use Route::resource(), but we're demonstrating Route::controller().
     // So 😅
@@ -29,6 +30,9 @@ Route::controller(UserController::class)->prefix('users')->middleware(['api', 'a
     Route::get('/{user}/posts/{post:id}', 'showPost')->scopeBindings();
 });
 
+// Posts.
+Route::get('posts/search', [PostController::class, 'search']);
 Route::apiResource('posts', PostController::class)->middleware(['api', 'auth']);
 
+// Post statuses.
 Route::get('post-status/{status}', [PostStatusController::class, 'show']);
