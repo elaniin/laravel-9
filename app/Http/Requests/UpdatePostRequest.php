@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\PostStatus;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdatePostRequest extends FormRequest
 {
@@ -26,6 +28,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'title'   => ['sometimes', 'string', 'max:255'],
             'content' => ['sometimes', 'string'],
+            'status'  => ['sometimes', new Enum(PostStatus::class)],
         ];
     }
 }

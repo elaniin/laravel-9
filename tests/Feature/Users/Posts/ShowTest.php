@@ -21,6 +21,7 @@ test('it shows an existing post of the user', function () {
                 'id',
                 'title',
                 'content',
+                'status',
                 'created_at',
                 'updated_at',
             ],
@@ -33,7 +34,7 @@ test('it fails to show a post of someone else', function () {
 
     actingAsUser();
 
-    $this->expectException(ModelNotFoundException::class);
-
     $response = $this->get("/api/users/{$users->get(1)->id}/posts/{$post->id}");
+
+    $response->assertStatus(404);
 });

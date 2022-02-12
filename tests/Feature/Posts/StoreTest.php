@@ -20,5 +20,6 @@ test('it stores a new post', function () {
     $this->assertDatabaseHas('posts', [
         'title' => 'Example',
         'content' => 'Example of content',
+        'status' => 'draft',
     ]);
 });
