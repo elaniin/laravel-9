@@ -46,4 +46,4 @@ jobs:
         php_version: ${{ matrix.php }}
 
     - name: Run feature tests 🧪
-      run: php artisan test --testsuite=Feature
+      run: php artisan test --testsuite=Feature --coverage --min=85
