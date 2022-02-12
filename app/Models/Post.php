@@ -12,15 +12,6 @@ class Post extends Model
     use HasFactory;
 
     /**
-     * The model's attributes.
-     *
-     * @var array<string, mixed>
-     */
-    protected $attributes = [
-        'status' => PostStatus::Draft,
-    ];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
