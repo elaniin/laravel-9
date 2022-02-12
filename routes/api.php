@@ -23,6 +23,9 @@ Route::controller(UserController::class)->prefix('users')->middleware(['api', 'a
     Route::post('/', 'store');
     Route::patch('/{user}', 'update');
     Route::delete('/{user}', 'destroy');
+
+    // Scope bindings.
+    Route::get('/{user}/posts/{post}', 'showPost')->scopeBindings();
 });
 
 Route::apiResource('posts', PostController::class)->middleware(['api', 'auth']);

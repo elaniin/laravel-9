@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -70,5 +72,17 @@ class UserController extends Controller
         $user->delete();
 
         return $this->respondModelDeleted('User');
+    }
+
+    /**
+     * Display the specified resource's posts.
+     *
+     * @param User $user
+     * @param Post $post
+     * @return PostResource
+     */
+    public function showPost(User $user, Post $post): PostResource
+    {
+        return new PostResource($post);
     }
 }
