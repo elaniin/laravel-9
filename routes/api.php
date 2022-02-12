@@ -32,6 +32,7 @@ Route::controller(UserController::class)->prefix('users')->middleware(['api', 'a
 
 // Posts.
 Route::get('posts/search', [PostController::class, 'search']);
+Route::get('posts/search-scout', [PostController::class, 'searchScout']);
 Route::apiResource('posts', PostController::class)->middleware(['api', 'auth']);
 
 // Post statuses.

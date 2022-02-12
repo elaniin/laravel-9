@@ -6,6 +6,7 @@ use App\Enums\PostStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Searchable;
 
 /**
@@ -60,6 +61,7 @@ class Post extends Model
      *
      * @return array<string, string>
      */
+    #[SearchUsingFullText('content')]
     public function toSearchableArray(): array
     {
         return [

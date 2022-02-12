@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255);
-            $table->text('content');
+            $table->text('content')->fulltext();
             $table->foreignIdFor(User::class)
                 ->constrained()
                 ->onUpdate('cascade')

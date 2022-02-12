@@ -29,6 +29,18 @@ class PostController extends Controller
      */
     public function search(Request $request): AnonymousResourceCollection
     {
+        $posts = Post::query()->whereFullText('content', $request->get('q'))->get();
+
+        return PostResource::collection($posts);
+    }
+
+    /**
+     * Display the search results of the resource using scout.
+     *
+     * @return AnonymousResourceCollection
+     */
+    public function searchScout(Request $request): AnonymousResourceCollection
+    {
         return PostResource::collection(Post::search($request->get('q'))->get());
     }
 
