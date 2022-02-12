@@ -1,0 +1,49 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: [8.1]
+
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: tests
+      DB_USERNAME: root
+      DB_PASSWORD: toor
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_HOST: ${{ env.DB_HOST }}
+          MYSQL_DATABASE: ${{ env.DB_DATABASE }}
+          MYSQL_ROOT_PASSWORD: ${{ env.DB_PASSWORD }}
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    name: PHP ${{ matrix.php }}
+
+    steps:
+    - name: Checkout 🛎
+      uses: actions/checkout@v2
+
+    - name: Cache Composer dependencies 📦
+      uses: actions/cache@v2
+      with:
+        path: /tmp/composer-cache
+        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+    - name: Install Dependencies 👨🏻‍💻
+      uses: php-actions/composer@v6
+      with:
+        php_version: ${{ matrix.php }}
+
+    - name: Run feature tests 🧪
+      run: php artisan test --testsuite=Feature
