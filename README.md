@@ -7,7 +7,7 @@
 
 ## 👀 About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. I've created this sample/test/basic/shallow repository to test and showcase some of the hotest features of Laravel in its 9th major release.
+Laravel is a web application framework with expressive, elegant syntax. We created this sample/basic/shallow repository to test and showcase some of the hotest features of Laravel in its 9th major release.
 
 ## 📦 Installation
 
